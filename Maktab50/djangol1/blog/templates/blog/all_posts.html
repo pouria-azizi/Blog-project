@@ -1,0 +1,146 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+{% load cache %}
+    <div class="limiter">
+        <div class="container-login100" style="background-color: #0f6674">
+            <div class="row">
+{#            {% cache 500 sidebar %}#}
+
+                <div class="col-3 m-b-4" style="color: white">
+                    <h5 class="mb-2">Filter by category:</h5>
+                    <ul>
+                        {% for category in category_list %}
+                            <li>
+                                <a href="{% url 'blog:post-by-category' category.0 %}">{{ category.0 }}</a>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+{#                {% endcache %}#}
+
+                <div class="row col-7">
+                    {% for post in object_list %}
+                        <div class="col-md-4">
+                            <div class="card mb-4 shadow-sm">
+                                {% if post.intro_image %}
+                                    <a href="{% url 'blog:detail' post.pk %}">
+                                        <img class="card-img-top"
+                                             src="{{ post.intro_image.url }}">
+                                    </a>
+                                {% endif %}
+                                <div class="card-body">
+
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text" style="color: #0056b3">{{ post.creator.first_name }}</small>
+                                        <div class="btn-group">
+                                            <button type="button"
+                                                    class="btn btn-sm btn-outline-secondary text-danger like-btn"
+                                                    data-post-id="{{ post.id }}">Like
+                                                👍 (<span id="like-count-{{ post.id }}">{{ post.likes }})</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <p class="card-text mt-1">
+                                        <a href="{% url 'blog:detail' post.pk %}">{{ post.title }}: {{ post.content|truncatewords:12 }}</a>
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted mt-3">{{ post.created_data }}</small>
+                                        {% if request.user.is_authenticated %}
+                                            {% if post.creator == request.user %}
+                                                <a href="{% url 'blog:edit' post.pk %}" type="button"
+                                                   class="float-right mt-3">🖍</a>
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {% for post in object_list_2 %}
+                        <div class="col-md-4">
+                            <div class="card mb-4 shadow-sm">
+                                {% if post.intro_image %}
+                                    <a href="{% url 'blog:detail' post.pk %}">
+                                        <img class="card-img-top"
+                                             src="{{ post.intro_image.url }}">
+                                    </a>
+                                {% endif %}
+                                <div class="card-body">
+
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text" style="color: #0056b3">{{ post.creator.first_name }}</small>
+                                        <div class="btn-group">
+                                            <button type="button"
+                                                    class="btn btn-sm btn-outline-secondary text-danger like-btn"
+                                                    data-post-id="{{ post.id }}">Like
+                                                👍 (<span id="like-count-{{ post.id }}">{{ post.likes }})</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <p class="card-text mt-1">
+                                        <a href="{% url 'blog:detail' post.pk %}">{{ post.title }}: {{ post.content|truncatewords:12 }}</a>
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted mt-3">{{ post.created_data }}</small>
+                                        {% if request.user.is_authenticated %}
+                                            {% if post.creator == request.user %}
+                                                <a href="{% url 'blog:edit' post.pk %}" type="button"
+                                                   class="float-right mt-3">🖍</a>
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% include 'blog/pagination.html' %}
+
+        </div>
+    </div>
+    </div>
+{% endblock %}
+{% block page_scripts %}
+    <script>
+        $(document).ready(function () {
+            $('.like-btn').on('click', function (e) {
+                var postId = $(e.target)[0].dataset.postId;
+                $.ajax({
+                    url: '/blog/like-post/' + postId,
+                    method: 'POST',
+                    success: function (response) {
+                        var likes = response.likes;
+                        $('#like-count-' + postId).html(likes);
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}
+
+{#<table class="table table-bordered table-dark">#}
+{#        <thead>#}
+{#                    <tr>#}
+{#                        <th scope="col">title</th>#}
+{#                        <th scope="col">data</th>#}
+{#                        <th scope="col">FullName</th>#}
+{#                        <th scope="col">Text</th>#}
+{#                    </tr>#}
+{#        </thead>#}
+{#        {% for post in my_posts %}#}
+{##}
+{##}
+{#                <tbody>#}
+{#                    <tr>#}
+{##}
+{#                        <th scope="row">{{ post.title }}</th>#}
+{#                        <td>{{ post.created_data }}</td>#}
+{#                        <td>{{ post.creator.first_name }}{{ post.creator.last_name }}</td>#}
+{#                        <td>{{ post.content }}</td>#}
+{#                    </tr>#}
+{#                </tbody>#}
+{#        {% endfor %}#}
+{##}
+{#</table>#}

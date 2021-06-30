@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="file://$PROJECT_DIR$" libraries="{animate, aos, bootstrap, bootstrap-icons, bootstrap.bundle, boxicons, email-decode, glightbox, isotope.pkgd, jquery-3.3.1.slim, main, popper, remixicon, style, swiper-bundle, validate}" />
+  </component>
+</project>

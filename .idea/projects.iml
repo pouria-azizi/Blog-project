@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="PYTHON_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="django" name="Django">
+      <configuration>
+        <option name="rootFolder" value="$MODULE_DIR$/Maktab50/djangol1" />
+        <option name="settingsModule" value="djangol1/settings.py" />
+        <option name="manageScript" value="manage.py" />
+        <option name="environment" value="&lt;map/&gt;" />
+        <option name="doNotUseTestRunner" value="false" />
+        <option name="trackFilePattern" value="" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$" />
+    <orderEntry type="jdk" jdkName="Python 3.8 (projects)" jdkType="Python SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="email-decode" level="application" />
+    <orderEntry type="library" name="main" level="application" />
+    <orderEntry type="library" name="swiper-bundle" level="application" />
+    <orderEntry type="library" name="validate" level="application" />
+    <orderEntry type="library" name="isotope.pkgd" level="application" />
+    <orderEntry type="library" name="glightbox" level="application" />
+    <orderEntry type="library" name="bootstrap.bundle" level="application" />
+    <orderEntry type="library" name="aos" level="application" />
+    <orderEntry type="library" name="style" level="application" />
+    <orderEntry type="library" name="remixicon" level="application" />
+    <orderEntry type="library" name="boxicons" level="application" />
+    <orderEntry type="library" name="bootstrap-icons" level="application" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="animate" level="application" />
+    <orderEntry type="library" name="jquery-3.3.1.slim" level="application" />
+    <orderEntry type="library" name="popper" level="application" />
+  </component>
+  <component name="PyDocumentationSettings">
+    <option name="format" value="PLAIN" />
+    <option name="myDocStringFormat" value="Plain" />
+  </component>
+  <component name="TemplatesService">
+    <option name="TEMPLATE_CONFIGURATION" value="Django" />
+    <option name="TEMPLATE_FOLDERS">
+      <list>
+        <option value="$MODULE_DIR$/Maktab50/djangol1/blog/templates" />
+        <option value="$MODULE_DIR$/Maktab50/djangol1/users/templates" />
+        <option value="$MODULE_DIR$/Maktab50/djangol1/inventory/templates" />
+        <option value="$MODULE_DIR$/Maktab50/djangol1/store/templates" />
+      </list>
+    </option>
+  </component>
+</module>
