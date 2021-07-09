@@ -14,7 +14,7 @@ from django.views.generic import CreateView, DetailView, UpdateView, ListView
 from . import models, forms
 
 
-@cache_page(60 * 15)
+# @cache_page(60 * 15)
 def show_all_posts(request):
     if request.user.is_authenticated:
         my_posts = models.Post.objects.filter(creator=request.user)
