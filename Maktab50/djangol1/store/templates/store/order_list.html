@@ -1,0 +1,53 @@
+{% extends 'blog/base.html' %}
+{% load i18n %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% block page_header_title %}
+    {% trans 'سفارش های من' %}
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1 class="text-success">
+            <i class="fa fa-shopping-basket"></i>
+            {% trans 'سفارش های من' %}
+        </h1>
+        <table class="table table-bordered table-striped rtl mt-4">
+            <thead>
+            <tr>
+                <th class="">{% trans 'شماره سفارش' %}</th>
+                <th class="">{% trans 'تاریخ سفارش' %}</th>
+                <th class="">{% trans 'وضعیت' %}</th>
+                <th class="w-25">{% trans 'کالاها' %}</th>
+                <th class="">{% trans 'تعداد کالاها' %}</th>
+                <th class="">{% trans 'مبلغ قابل پرداخت' %}</th>
+            </tr>
+            </thead>
+            {% for order in object_list %}
+                <tr>
+                    <td>{{ order.pk }}</td>
+                    {# Method 1 #}
+                                    <td>{{ order.created_on.time }}</td>
+                                    <td>{{ order.created_on.date }}</td>
+                    {# Method 2 #}
+                    {#                <td>{{ order.get_formatted_date }}</td>#}
+                    {# Method 3 #}
+                    {#                <td>{{ order.formatted_date }}</td>#}
+                    {# Method 4: Template tag #}
+{#                    <td>{{ order.created_on|jdate:"%Y-%m-%d %H:%M" }}</td>#}
+                    {# Method 5: Humanize #}
+                    {#                <td>{{ order.created_on|naturaltime }}</td>#}
+                    <td>{{ order.get_status_display }}</td>
+                    <td>
+                        {% for item in order.orderitem_set.all %}
+                            <p class="rtl">
+                                {{ forloop.counter }}- {{ item.product }} ❎ {{ item.qty }}
+                            </p>
+                        {% endfor %}
+                    </td>
+                    <td>{{ order.get_total_qty }}</td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% include 'blog/pagination.html' %}
+    </div>
+{% endblock %}
